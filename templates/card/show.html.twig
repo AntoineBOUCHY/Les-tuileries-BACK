@@ -1,0 +1,68 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Card{% endblock %}
+
+{% block main %}
+
+    <h1>Détail de la carte</h1>
+        
+    {% include '_flash_messages.html.twig' %}
+
+<div class="container text-center">
+
+{% if card.usedAt is not empty  %}<span class="badge rounded-pill text-bg-secondary mx-2" style="font-size: 2rem;">Déjà utilisée</span>  
+{% elseif card.usedAt is null and card.limitedDate|date('Y/m/d') > 'now'|date('Y/m/d') %}<span class="badge rounded-pill text-bg-success mx-2" style="font-size: 2rem;">Active</span>
+{% else %}<span class="badge rounded-pill text-bg-danger mx-2" style="font-size: 2rem;">Expirée !</span>  
+{% endif %} 
+
+
+<div class="row align-items-start mt-0">
+        <div class="col">
+        <p><i class="bi bi-person-vcard-fill" style="font-size: 16rem;"></i></p>
+    </div>
+    <div class="col infos">
+        {% if card.usedAt is not empty %}
+            <p>Utilisée le : {{ card.usedAt|date('d/m/Y') }} </p>
+        {% endif %}        
+        <p>Référence : <strong>#23710{{ card.id }}</strong> </p> 
+        <p>Offert par : {{ card.gifter }}</p>
+        <p>A déstination de : <strong>{{ card.receiver }}</strong></p> 
+        <p> Acheté le : <strong>{{ card.boughtAt|date('d/m/Y') }}</strong></p> 
+
+        {% if card.usedAt is null and card.limitedDate|date('Y/m/d') > 'now'|date('Y/m/d') %}
+            <p>Expire le : <strong>{{ card.limitedDate|date('d/m/Y') }}</strong></p>
+        {% elseif card.usedAt is null and card.limitedDate|date('Y/m/d') < 'now'|date('Y/m/d') %}
+            <p><span class="badge rounded-pill text-bg-danger mx-2">Expirée depuis le : {{ card.limitedDate|date('d/m/Y') }}</span></p>  
+        {% endif %} 
+
+        <p>Montant : <strong>{{ card.amount }}</strong> <i class="bi bi-currency-euro"></i></p>
+
+    </div>
+    {% dump(card.user) %}
+    {% if card.user == null %}
+        <div class="col infos">
+            <p>Acheté au comptoir</p>
+        </div>   
+    {% else %}
+    <div class="col infos">
+        <p>Acheté par internet</p>
+        <p>Acheteur : <strong>{{ card.user.firstname }} {{ card.user.lastname }}</strong></p>
+        <p>Tel : <strong>{{ card.user.phone }}</strong></p>
+        <p>Mail : <strong>{{ card.user.email }}</strong> </p>
+    </div>  
+    {% endif %}   
+    {% if card.usedAt is not empty  %}
+
+    {% elseif card.usedAt is null and card.limitedDate|date('Y/m/d') > 'now'|date('Y/m/d') %}
+        <form method="post" action="{{ path('app_card_used', {'id': card.id}) }}" onsubmit="return confirm('Vous confirmez bien la venue  du client avec le bon cadeau de reférence #23710{{card.id}} ?');">    <button class="btn btn-warning">Enregistrer le passage du client</button>
+        </form>
+    {% else %}
+        <form method="post" action="{{ path('app_card_used', {'id': card.id}) }}" onsubmit="return confirm('Êtes vous sûr de désactiver la carte ou confirmer la venue  du client avec le bon cadeau de reférence #23710{{card.id}} malgrès que la carte soit périmée ?');">    
+        <button class="btn btn-warning">Enregistrer le passage du client ou désactiver la carte</button> 
+    {% endif %}   
+    </div>  
+</div>
+
+    <a class="btn btn-primary my-5"href="{{ path('app_card_index') }}">Retour à la liste</a>
+
+{% endblock %}

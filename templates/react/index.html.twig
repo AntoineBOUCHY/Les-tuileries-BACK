@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {% for cssFile in cssFiles %}
+        <link rel="stylesheet" href="{{ asset('css/' ~ cssFile) }}">
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    {% for jsFile in jsFiles %}
+    <script defer src="{{ asset('js/' ~ jsFile) }}"></script>      
+    {% endfor %}
+{% endblock %}
+
+{% block title %}Les Tuileries{% endblock %}
+
+{% block body %}
+    <div id="root"></div>
+{% endblock %}

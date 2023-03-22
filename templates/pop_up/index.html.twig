@@ -1,0 +1,29 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}PopUp index{% endblock %}
+{% block main %}
+
+
+    <h1>Pop up </h1>
+    {% include '_flash_messages.html.twig' %}
+
+
+    {{ include('pop_up/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+
+
+{% if pop_up.isActive == 1 %}
+
+    <div class="alert alert-success mt-3 mx-5" role="alert">
+La pop up est VISIBLE par tout les visiteur du site, pour la désactiver, cliquer sur le bouton "Désactiver"</div>
+{% else %}
+    <div class="alert alert-warning mt-3 mx-5" role="alert">
+    La pop up est désactivée, pour la rendre visible, veuillez cliquer sur "Activer"</div>
+{% endif %}
+
+    <a href="{{ path('app_pop_up_status', {'id': pop_up.id}) }}"><button class="btn btn-warning mt-2">{{ pop_up.isActive ? 'Désactiver' : 'Activer' }}</button></a> <br>
+
+<a class="btn btn-primary my-5"href="{{ path('app_home_admin') }}">Retour à l'accueil</a>
+
+
+{% endblock %}

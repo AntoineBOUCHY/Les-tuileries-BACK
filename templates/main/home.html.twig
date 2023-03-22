@@ -1,0 +1,89 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}ADMIN{% endblock %}
+
+{% block main %}
+
+<h1>Espace Admin</h1>
+{% if pop_up.isActive == 1 %}
+<div class="alert alert-dark alert-dismissible fade show mx-3" role="alert">
+  <strong><i style="font-size: 1,5rem;" class="bi bi-info-circle-fill"></i> Information :</strong> Une pop up est actuellement active et visible par les utilisateurs.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<div class="container">
+  <div class="card-group  ">
+    <div class="col card-common mx-2">
+      <a href="{{ path('app_event_index') }}" id="home_button">
+        <div class="card-body ">
+          <div class="card h-80 " id="home_button">
+            <h5 class="card-title"><i class="bi bi-chat-right-text"style="font-size: 6rem;"></i></h5>
+            <p class="card-text" style="font-size: 1.5rem;">Gérer les Evenements / News</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col card-common mx-2">
+      <a href="{{ path('app_card_index') }}" id="home_button">
+        <div class="card-body ">
+          <div class="card h-80 " id="home_button">
+            <h5 class="card-title"><i class="bi bi bi-card-checklist"style="font-size: 6rem;"></i></h5>
+            <p class="card-text" style="font-size: 1.5rem;">Historique des cartes cadeaux</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col card-common mx-2">
+      <a href="{{ path('app_gallery_index') }}" id="home_button">
+        <div class="card-body ">
+          <div class="card h-80 " id="home_button">
+            <h5 class="card-title"><i class="bi bi-image"style="font-size: 6rem;"></i></h5>
+            <p class="card-text" style="font-size: 1.5rem;">Gestion de la Galerie photos</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col card-common mx-2">
+      <a href="{{ path('app_menu_admin') }}" id="home_button">
+        <div class="card-body ">
+          <div class="card h-80 " id="home_button">
+            <h5 class="card-title"><i class="bi bi-journal-medical"style="font-size: 6rem;"></i></h5>
+            <p class="card-text" style="font-size: 1.5rem;">Ajouter la nouvelle Carte et menus</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col card-common mx-2">
+      <a href="{{ path('app_pop_up_index') }}" id="home_button">
+        <div class="card-body ">
+          <div class="card h-80 " id="home_button">
+            <h5 class="card-title"><i class="bi bi-exclamation-triangle"style="font-size: 6rem;"></i></h5>
+            <p class="card-text" style="font-size: 1.5rem;">Ajouter et programmer une Pop Up</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col card-common mx-2">
+      <a target="_blank" href="https://www.paypal.com/signin" id="home_button">
+        <div class="card-body ">
+          <div class="card h-80 " id="home_button">
+            <h5 class="card-title"><i class="bi bi-paypal"style="font-size: 6rem;"></i></h5>
+            <p class="card-text" style="font-size: 1.5rem;">Accéder à mon compte PAYPAL</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    
+
+  </div>
+</div>
+
+
+
+
+
+   
+
+{% endblock %}

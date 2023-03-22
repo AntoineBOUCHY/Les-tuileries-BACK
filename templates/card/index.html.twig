@@ -1,0 +1,36 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Cartes cadeaux{% endblock %}
+
+{% block main %}
+    <h1>Historique carte d'achat</h1>
+        
+    {% include '_flash_messages.html.twig' %}
+
+    <a href="{{ path('app_card_new') }}"><button class="btn btn-success mb-5" type="button">Ajouter Une carte cadeau</button></a>
+    <form class="d-flex p-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <table class="table table-dark table-striped historical">
+        <thead>
+            <tr>
+            <th scope="col">Réf</th>
+                <th scope="col">Bénificiare</th>
+                <th scope="col">Montant</th>
+                <th scope="col">Acheté le</th>                 
+                <th scope="col">Etat</th>                      
+            </tr>
+        </thead>
+        <tbody>
+            {# fills with fetch request #}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script defer src="{{ asset('assets/js/searchCard.js') }}"></script>   
+{% endblock %}

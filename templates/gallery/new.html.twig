@@ -1,0 +1,16 @@
+
+
+
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Ajout de photos{% endblock %}
+
+{% block main %}
+
+<h1>Ajouter une nouvelle photo</h1>
+
+    {% include '_flash_messages.html.twig' %}
+
+    {{ include('gallery/_form.html.twig') }}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'backoffice.html.twig' %}
+
+
+{% block body %}
+
+
+
+<h1>Espace admin</h1>
+    
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+<main class="form-signin w-100 m-auto">
+    <form action="{{ path('app_login_admin') }}" method="POST">
+        
+        <h4 class="h3 mb-3 fw-normal">Veuillez rentrer vos identifiants</h4>
+            
+        <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="_username">
+            <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"  name="_password">
+            <label for="floatingPassword">Mot de passe</label>
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Se souvenir de moi
+            </label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Connexion</button>
+        <p class="mt-5 mb-3 ">&copy; 2023</p>
+    </form>
+</main>
+
+
+{% endblock %}

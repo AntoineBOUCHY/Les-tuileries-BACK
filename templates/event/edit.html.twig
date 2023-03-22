@@ -1,0 +1,15 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Modifier{% endblock %}
+
+{% block main %}
+    <h1>Modifier la publication</h1>
+
+    {# TODO mettre la condition que si une new à la propriété ishomeEvent == true alors toutes les autres = 0 #}
+
+    {{ include('event/_form.html.twig', {'button_label': 'Mettre à jour'}) }}    
+
+    {{ include('event/_delete_form.html.twig') }}
+
+    <a class="btn btn-primary my-2"href="{{ path('app_event_index') }}">Retourner à la liste des publications</a>
+{% endblock %}

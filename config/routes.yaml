@@ -1,0 +1,10 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# login JWT
+api_login_check:
+    path: /api/login_check
+
+app_logout_admin:
+    path: /admin/logout

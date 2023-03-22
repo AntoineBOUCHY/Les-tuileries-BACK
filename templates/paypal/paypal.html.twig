@@ -1,0 +1,42 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block body %}
+  <script src="https://www.paypal.com/sdk/js?client-id={{ paypalId }}&currency=EUR&intent=authorize"></script>
+  <div class="m-5" >
+    <a class="p-2 rounded bg-light text-dark text-decoration-none" href="{{ app.request.server.get('SITE_HOST') }}espace-client">Retour à votre espace client</a>
+  </div>
+
+  <div id="paypal-button-container"></div>
+  <script>
+    paypal.Buttons({
+      // Order is created on the server and the order id is returned
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: {{ amountValue }} // Can also reference a variable or function
+            }
+          }]
+        });
+      },
+      // Finalize the transaction on the server after payer approval
+      onApprove: (data, actions) => {
+        actions.order.authorize().then( async (orderData) => {
+          const authorizationId = orderData.purchase_units[0].payments.authorizations[0].id
+
+          fetch(`{{ app.request.server.get('SITE_HOST') }}api/payment`, {
+            method: "post",
+            headers: {
+              'content-type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('SESSION_TOKEN')}`
+            },
+            body: JSON.stringify(orderData)
+          })
+          .then((response) => response.json())
+          .then((data) => document.location.href="{{ app.request.server.get('SITE_HOST') }}espace-client");
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+
+{% endblock %}

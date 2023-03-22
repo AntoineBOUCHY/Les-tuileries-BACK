@@ -1,0 +1,35 @@
+{% block nav %}
+{# ----- NAV BAR -------- #}
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand " href="{{ path('app_home_admin') }}">Accueil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="{{ path('app_event_index') }}"><i class="bi bi-chat-right-text"></i> Evenements</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_card_index') }}"><i class="bi bi bi-card-checklist"></i> Historique</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_gallery_index') }}"><i class="bi bi-image"></i> Galerie</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_menu_admin') }}" ><i class="bi bi-journal-medical"></i> Menus</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_pop_up_index') }}"><i class="bi bi-exclamation-triangle"></i> Pop Up</a>
+                </li>
+                <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://www.paypal.com/signin"><i class="bi bi-paypal"></i>Accéder à Paypal</a>                
+                </li>
+                <a class="btn btn-outline-danger mx-5" href="{{ path('app_logout_admin') }}">Déconnexion</a>
+            </ul>
+        </div>
+    </div>
+</nav>
+{# ----- END NAV BAR -------- #}
+{% endblock %}

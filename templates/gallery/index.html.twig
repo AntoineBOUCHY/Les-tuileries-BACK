@@ -1,0 +1,35 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Galerie{% endblock %}
+
+{% block main %}
+
+    <h1>Gestion de la Galerie photos</h1>
+
+    {% include '_flash_messages.html.twig' %}
+
+    <a href="{{ path('new_picture_gallery') }}"><button class="btn btn-success" type="button">Ajouter des photos</button></a>
+
+    <div class="row row-cols-2 row-cols-md-4 g-2 px-2">
+    
+    {% for picture in allPictures %}
+        <div class="col ">        
+            <div class="card gall">
+                <img src="{{ asset('assets/images/')}}{{ picture.picture_path }}" class="card-img-top galleryadmin" alt="...">
+                <div class="card-body">
+                    <p class="card-title">{{ picture.picture_path }}</p> 
+
+                   {{ include('gallery/_delete_form.html.twig') }}
+             
+                </div>
+            </div>
+        </div>
+        
+    {% endfor %}   
+    
+    </div> 
+    </div>
+    </div>  
+
+{% endblock %}
+

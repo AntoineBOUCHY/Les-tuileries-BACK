@@ -1,0 +1,17 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Ajouter une New{% endblock %}
+
+{% block main %}
+    <h1>Ajouter une New ou Événement</h1>
+
+    {% include '_flash_messages.html.twig' %}
+    
+    {{ include('event/_form.html.twig') }}
+
+    {% for picture in news.pictures %}
+{% dump(picture.id) %}
+        {{ include ('event/_delete_picture_event_form.html.twig') }}   
+    {% endfor %}
+    <a class="btn btn-primary my-3"href="{{ path('app_event_index') }}">Retourner à la liste des publications</a>
+{% endblock %}
