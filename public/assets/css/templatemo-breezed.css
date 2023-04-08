@@ -1161,7 +1161,7 @@ subscribe
 
 #subscribe {
   padding: 80px 0px;
-  background-image: url(../images/terasse.jpg);
+  background-image: url(../images/terasse.webp);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1260,15 +1260,7 @@ subscribe
 testimonials
 --------------------------------------------
 */
-#testimonials {
-  margin-top: 120px;
-  padding: 80px 0px;
-  padding: 120px 0px;
-  background-image: url(../images/slide-03.jpg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 #testimonials .section-heading {
   text-align: center;
   color: #fff;
