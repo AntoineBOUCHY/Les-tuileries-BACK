@@ -1,0 +1,43 @@
+<div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky background-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="{{ path('app_front') }}" class="logo">
+                            <!-- .LES TUILERIES -->
+                            <img class="logoimg" src="assets/images/logo.png" alt="">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="{{ path('app_front') }}" >Accueil</a></li>
+                            <li class="scroll-to-section"><a id="cartecadeau" href="carte_cadeaux.html">Carte cadeaux</a></li>
+                            <!-- <li class="scroll-to-section"><a href="#contact-us">Menus</a></li> -->
+                            <li class="scroll-to-section"><a href="{{ path('app_menus') }}" id="{% if app.request.attributes.get('_route') == 'app_menus' %}navactive{% endif %}">Menus</a></li>
+                            <li class="scroll-to-section"><a href="{{ path('app_galerie') }}"id="{% if app.request.attributes.get('_route') == 'app_galerie' %}navactive{% endif %}">Galerie</a></li>
+                            <li class="scroll-to-section"><a href="{{ path('app_event') }}"id="{% if app.request.attributes.get('_route') == 'app_event' %}navactive{% endif %}">Evenements</a></li>
+                            
+                            
+                            
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>

@@ -1,0 +1,149 @@
+<!-- ***** footer ***** -->
+    <section class="section" id="subscribe2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="section-heading">
+                       <h2>Le restaurant, à la déco lounge et chaleureuse</h2>
+                    </div>
+                    <div class="subscribe-content">
+                        
+                        <p>La cuisine y est traditionnelle, bourguignonne et créative, les produits frais sont travaillés avec talent pour le bonheur des clients. La salle de réception, entièrement équipée pour les séminaires où trône le bureau ovale, sera l'endroit idéal pour vos réunions avant un moment de dégustation, ou pour vos repas de famille.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ***** Contact Us Area Starts ***** -->
+    <section class="section" id="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="left-text-content">
+                        <div class="section-heading">
+                           
+                            
+                                <h2 style="color:rgb(50,50,50);">Contactez-nous !</h2>
+                            
+                        </div>
+                        <ul class="contact-info">
+                            <a href="tel:0385505050">
+                                <li><img src="assets/images/contact-info-01.png" alt="">03 85 50 50 50</li>
+                            </a>
+                            <a href="mailto:brasserielestuileries@gmail.com">
+                                <li><img src="assets/images/contact-info-02.png" alt="">brasserielestuileries@gmail.com</li>
+                            </a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-xs-12">
+                    <div class="contact-form">
+                        <form id="contact" action="" method="get">
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Votre Nom*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="phone" type="text" id="phone" placeholder="Téléphone*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="email" type="email" id="email" placeholder="Email *" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="subject" type="text" id="subject" placeholder="Objet">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="message" rows="6" id="message" placeholder="Message *" required=""></textarea>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-button-icon">Envoyer maintenant<i class="fa fa-arrow-right"></i></button>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us Area Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="left-text-content">
+                        <p>Copyright © 2023 . Tous les droits sont réservés.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="right-text-content">
+                            <ul class="social-icons">
+                                <li><p>Suivez-nous !</p></li>
+                                <li><a rel="nofollow" target="_blank" href="https://www.facebook.com/brasserieslestuileries?locale=fr_FR"><i class="fa fa-facebook"></i></a></li>
+                                <li><a rel="nofollow" target="_blank" href="https://www.instagram.com/brasserielestuileries71/?igshid=YmMyMTA2M2Y%3D"><i class="fa fa-instagram"></i></a></li>
+                                
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/slick.js"></script> 
+    <script src="assets/js/lightbox.js"></script> 
+    <script src="assets/js/isotope.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+  </body>
+</html>
