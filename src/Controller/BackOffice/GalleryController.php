@@ -2,18 +2,18 @@
 
 namespace App\Controller\BackOffice;
 
+use CURLFile;
+use App\Service\File;
 use App\Entity\Picture;
 use App\Form\PictureType;
-use App\Repository\PageContentRepository;
-use App\Repository\PictureRepository;
 use App\Service\AllContents;
-use App\Service\File;
+use App\Repository\PictureRepository;
+use App\Repository\PageContentRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use CURLFile;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GalleryController extends AbstractController
 {

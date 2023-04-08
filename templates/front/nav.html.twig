@@ -23,11 +23,12 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="{{ path('app_front') }}" >Accueil</a></li>
-                            <li class="scroll-to-section"><a id="cartecadeau" href="carte_cadeaux.html">Carte cadeaux</a></li>
+                            <li class="scroll-to-section"><a id="cartecadeau" href="{{ path('app_cadeau') }}" id="{% if app.request.attributes.get('_route') == 'app_cadeau' %}navactive{% endif %}">Carte cadeau</a></li>
                             <!-- <li class="scroll-to-section"><a href="#contact-us">Menus</a></li> -->
                             <li class="scroll-to-section"><a href="{{ path('app_menus') }}" id="{% if app.request.attributes.get('_route') == 'app_menus' %}navactive{% endif %}">Menus</a></li>
-                            <li class="scroll-to-section"><a href="{{ path('app_galerie') }}"id="{% if app.request.attributes.get('_route') == 'app_galerie' %}navactive{% endif %}">Galerie</a></li>
                             <li class="scroll-to-section"><a href="{{ path('app_event') }}"id="{% if app.request.attributes.get('_route') == 'app_event' %}navactive{% endif %}">Evenements</a></li>
+                            <li class="scroll-to-section"><a href="{{ path('app_galerie') }}"id="{% if app.request.attributes.get('_route') == 'app_galerie' %}navactive{% endif %}">Galerie</a></li>
+                            
                             
                             
                             

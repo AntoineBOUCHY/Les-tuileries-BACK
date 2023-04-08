@@ -157,6 +157,12 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
   ::-webkit-scrollbar-thumb {
       border-radius: 4px;
   }
+  .cardcadeau {
+    width: 100%;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
   .menus{
     max-width: 1300px;
     padding: 1rem;
@@ -620,7 +626,7 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #1e1e1e;
+  background-color: #ebae77;
   display: block;
   position: absolute;
   width: 30px;
@@ -631,7 +637,7 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
 .background-header .main-nav .menu-trigger span,
 .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
-  background-color: #1e1e1e;
+  background-color: #ebae77;
 }
 
 .header-area .main-nav .menu-trigger span:before,
@@ -640,7 +646,7 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #1e1e1e;
+  background-color: #ebae77;
   display: block;
   position: absolute;
   width: 30px;
@@ -651,7 +657,7 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
 
 .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
-  background-color: #1e1e1e;
+  background-color:#ebae77;
 }
 
 .header-area .main-nav .menu-trigger span:before,
@@ -692,11 +698,11 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
   -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
   -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
   transform: translateY(6px) translateX(1px) rotate(45deg);
-  background-color: #1e1e1e;
+  background-color: #ddd
 }
 
 .background-header .main-nav .menu-trigger.active span:before {
-  background-color: #1e1e1e;
+  background-color: #ddd;
 }
 
 .header-area .main-nav .menu-trigger.active span:after {
@@ -704,11 +710,11 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
   -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  background-color: #1e1e1e;
+  background-color: #ddd;
 }
 
 .background-header .main-nav .menu-trigger.active span:after {
-  background-color: #1e1e1e;
+  background-color: #ddd;;
 }
 
 .header-area.header-sticky {
@@ -842,7 +848,7 @@ background: linear-gradient(121deg, rgba(50,50,50,1) 30%, rgba(64,64,64,1) 78%);
     height: 46px;
     }
   #news{ 
-    padding: 1rem 5rem;
+    padding: 1rem 10rem;
 } 
 }
 
@@ -1784,6 +1790,8 @@ portfolio
 }
 #projects .filters-content .item img {
   width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
 #projects {
