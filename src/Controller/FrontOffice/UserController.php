@@ -26,23 +26,23 @@ class UserController extends AbstractController
         // profiler : e1e1c1 -> 7075f8 -> 5dbfc1
     }
 
-    // /**
-    //  * Send the CSRF token for sign in user form
-    //  * 
-    //  * @Route("/api/sign-in", name="app_user_sign_in_get", methods={"GET"})
-    //  */
-    // public function signInCSRF(): JsonResponse
-    // {
-    //     // Create a token
-    //     $tokenCSRF = $this->tokenService->createToken();
+    /**
+     * Send the CSRF token for sign in user form
+     * 
+     * @Route("/api/sign-in", name="app_user_sign_in_get", methods={"GET"})
+     */
+    public function signInCSRF(): JsonResponse
+    {
+        // Create a token
+        $tokenCSRF = $this->tokenService->createToken();
 
-    //     return $this->json(['token_CSRF' => $tokenCSRF], Response::HTTP_OK);
-    // }
+        return $this->json(['token_CSRF' => $tokenCSRF], Response::HTTP_OK);
+    }
 
     /**
      * Create a new user
      * 
-     * @Route("/sign-in", name="app_user_sign_in_post", methods={"POST"})
+     * @Route("/api/sign-in", name="app_user_sign_in_post", methods={"POST"})
      */
     public function signIn(ManagerRegistry $managerRegistry ,Request $request, SerializerInterface $serializerInterface, UserPasswordHasherInterface $passwordHasher, UserRepository $userRepository, ValidationUserValues $validator ): JsonResponse
     {
@@ -66,11 +66,11 @@ class UserController extends AbstractController
             return $this->json(['message' => 'Une ou plusieurs valeur(s) incorrecte(s)'], Response::HTTP_BAD_REQUEST);
         }
 
-        // // Check if the email exist in the DB
-        // if ($userRepository->findOneBy(['email' =>$newUser->getEmail()])) {
+        // Check if the email exist in the DB
+        if ($userRepository->findOneBy(['email' =>$newUser->getEmail()])) {
 
-        //     return $this->json(['message' => 'Adresse mail déjà utilisée!'], Response::HTTP_BAD_REQUEST);
-        // }
+            return $this->json(['message' => 'Adresse mail déjà utilisée!'], Response::HTTP_BAD_REQUEST);
+        }
 
         // Check if the email and the password are correctly entered
         if(

@@ -52,5 +52,13 @@ public function cadeau(): Response
     ]);
 }
 
+ #[Route('/succés', name: 'app_success')]
+ public function infos(): Response
+ {
+     return $this->render('front/success.html.twig', [
+        'controller_name' => 'FrontController',
+     ]);
+ }
+
 }
 

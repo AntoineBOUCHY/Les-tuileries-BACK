@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
 
     <link rel="stylesheet" href="assets/css/templatemo-breezed.css">
+    
 
     <!-- <link rel="stylesheet" href="assets/css/owl-carousel.css"> -->
 
@@ -50,21 +51,18 @@
                     <h2></h2>
                 </div>
                 <div class="filters">
-                <p> Faîtes plaisir à ceux que vous aimez en leur offrant une Surprise gourmande.</p> <br><br>
+                <p> Veuillez renseignez ces champs s'il vous plait.</p> <br><br>
 
-                <p>Chèque cadeau à montant libre. Ce bon vous <strong>permet de laisser libre choix à vos envies le jour de votre venue.</strong></p>
+                
                 </div>
             </div>
-            <div class="col-lg-9">
-                <div class="filters-content">
-                    <img class="cardcadeau" src="{{ asset('assets/images/CarteGourmandeRecto.jpg') }}" alt="">
-                    {# <img class="cardcadeau"src="{{ asset('assets/images/CarteGourmandeVerso.jpg') }}" alt=""> #}
-                </div>                
-            </div>
+            
         </div>
-        <a href="{{ path('app_infos') }}" style="margin-top:2rem;" class="main-button-icon">Offrir une carte cadeau<i class="fa fa-arrow-right"></i></a>
+        {{ include('card/_form.html.twig') }}
+        {# <a href="{{ path('app_user_sign_in_post') }}" style="margin-top:2rem;" class="main-button-icon">Valider<i class="fa fa-arrow-right"></i></a> #}
         <br><p style="margin-top:3rem;">Réservation au préalable recommandé, selon disponibilités. La valeur du bon ne peut en aucun cas être échangée contre de l'espèce. Dans le cas où le montant de la prestation dépasse celui du bon, il devra être complété par un autre moyen de paiement. Cependant, si le montant de la prestation est inférieur à celui du montant sur le bon, l'établissement ne rembourse pas la différence. Aucun bon ne sera accepté au-delà de sa date de <strong>validité (1 an)</strong>. Sous réserve de disponibilité</p>
     </div>
+    
     </section>
    
     {% include 'front/footer.html.twig' %}

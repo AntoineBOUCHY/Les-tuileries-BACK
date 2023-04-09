@@ -15,16 +15,24 @@ class CardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder         
-        
+            
+        ->add('email', TextType::class, [
+                
+            'label' => 'Votre adresse mail ( Vous recevrez la carte cadeau en pdf ):',
+            'attr' => [
+                'class' => 'custom-title',
+            ],
+        ])
+
             ->add('gifter', TextType::class, [
-                'required' => false,
+                
                 'label' => 'De la part de :',
                 'attr' => [
                     'class' => 'custom-title',
                 ],
             ])
             ->add('receiver', TextType::class, [
-                'required' => false,
+                
                 'label' => 'A l\'intention de :',
                 'attr' => [
                     'class' => 'custom-title',
@@ -33,14 +41,15 @@ class CardType extends AbstractType
             ->add('amount', MoneyType::class, [
                 'label' => 'Montant',
             ])
-            ->add('boughtAt', DateTimeType::class, [
-                'label' => 'Date d\'achat de la carte cadeau',
-                'widget' => 'single_text',
-                'input' => 'datetime_immutable',
-                'data' => new \DateTimeImmutable(),
-                'attr' => [
-                    'class' => 'custom-date',]                
-            ]);
+            // ->add('boughtAt', DateTimeType::class, [
+            //     'label' => 'Date d\'achat de la carte cadeau',
+            //     'widget' => 'single_text',
+            //     'input' => 'datetime_immutable',
+            //     'data' => new \DateTimeImmutable(),
+            //     'attr' => [
+            //         'class' => 'custom-date',]                
+            // ]);
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
