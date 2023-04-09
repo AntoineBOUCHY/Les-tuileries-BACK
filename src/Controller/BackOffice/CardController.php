@@ -66,6 +66,45 @@ class CardController extends AbstractController
     }
 
     /**
+     * @Route("/infos", name="app_infos", methods={"GET", "POST"})
+     */
+    public function newcardfront (Request $request, CardRepository $cardRepository): Response
+    {
+        $card = new Card();
+        $form = $this->createForm(CardType::class, $card);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Create a random reference
+        $cardReference = rand(1, 999999);
+        // Condition of while loop
+        $isUnique = false;
+        while(!$isUnique){
+            // Check if a card is find with this reference
+            $cardReferenceExist = $cardRepository->findOneBy(['reference' => $cardReference]);
+            if(null === $cardReferenceExist){
+                // The reference does not exist in the DB
+                $isUnique = true;
+                break;
+            }
+            // Generate a new reference
+            $cardReference = rand(1, 999999);
+        }
+            $card->setReference($cardReference);
+            $cardRepository->add($card, true);
+
+            
+
+            return $this->redirectToRoute('app_success', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('front/infos.html.twig', [
+            'card' => $card,
+            'form' => $form,
+        ]);
+    }
+
+    /**
      * @Route("/admin/card/{id}", name="app_card_show", methods={"GET"})
      */
     public function show(Card $card): Response

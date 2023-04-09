@@ -25,6 +25,9 @@
             <p>Utilisée le : {{ card.usedAt|date('d/m/Y') }} </p>
         {% endif %}        
         <p>Référence : <strong>#23710{{ card.id }}</strong> </p> 
+        {% if card.email != "brasserielestuilerie@gmail.com" %}
+        <p>Carte envoyé à : <strong>{{ card.email }}</strong></p>
+        {% endif %}
         <p>Offert par : {{ card.gifter }}</p>
         <p>A déstination de : <strong>{{ card.receiver }}</strong></p> 
         <p> Acheté le : <strong>{{ card.boughtAt|date('d/m/Y') }}</strong></p> 
@@ -38,18 +41,11 @@
         <p>Montant : <strong>{{ card.amount }}</strong> <i class="bi bi-currency-euro"></i></p>
 
     </div>
-    {% dump(card.user) %}
-    {% if card.user == null %}
+    
+    {% if card.email == "brasserielestuilerie@gmail.com" %}
         <div class="col infos">
             <p>Acheté au comptoir</p>
-        </div>   
-    {% else %}
-    <div class="col infos">
-        <p>Acheté par internet</p>
-        <p>Acheteur : <strong>{{ card.user.firstname }} {{ card.user.lastname }}</strong></p>
-        <p>Tel : <strong>{{ card.user.phone }}</strong></p>
-        <p>Mail : <strong>{{ card.user.email }}</strong> </p>
-    </div>  
+        </div>      
     {% endif %}   
     {% if card.usedAt is not empty  %}
 
