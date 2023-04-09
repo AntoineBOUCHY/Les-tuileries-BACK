@@ -36,6 +36,22 @@ class CardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Create a random reference
+        $cardReference = rand(1, 999999);
+        // Condition of while loop
+        $isUnique = false;
+        while(!$isUnique){
+            // Check if a card is find with this reference
+            $cardReferenceExist = $cardRepository->findOneBy(['reference' => $cardReference]);
+            if(null === $cardReferenceExist){
+                // The reference does not exist in the DB
+                $isUnique = true;
+                break;
+            }
+            // Generate a new reference
+            $cardReference = rand(1, 999999);
+        }
+            $card->setReference($cardReference);
             $cardRepository->add($card, true);
 
             $this->addFlash('success', 'Card créée avec succès.');
@@ -98,3 +114,4 @@ class CardController extends AbstractController
         );
     }
 }
+    
