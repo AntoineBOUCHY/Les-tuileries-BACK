@@ -74,7 +74,8 @@ class CardController extends AbstractController
         $form = $this->createForm(CardType::class, $card);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {       
+       
             // Create a random reference
         $cardReference = rand(1, 999999);
         // Condition of while loop
@@ -93,9 +94,13 @@ class CardController extends AbstractController
             $card->setReference($cardReference);
             $cardRepository->add($card, true);
 
-            
+            $this->get('session')->set('card_id', $card->getId());
 
-            return $this->redirectToRoute('app_success', [], Response::HTTP_SEE_OTHER);
+
+
+
+
+            return $this->redirectToRoute('app_stripe', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('front/infos.html.twig', [
@@ -103,6 +108,39 @@ class CardController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    /**
+     * @Route("/create-checkout-session", name="app_stripe")
+     */
+    public function paiement(Request $request,CardRepository $cardRepository): Response
+    {
+
+        $cardId = $this->get('session')->get('card_id');
+    $card = $cardRepository->find($cardId);
+        $stripe = new \Stripe\StripeClient('sk_test_51MWFV9HkQdmkPkOMQyZn0u7sVgCaah4JT8PZ6IZXVMLcm9qe0pbIIhageWXxMOgvuxyVSO0aSjkmXhIquMPtzous00s5OmZOnk');
+        
+$checkout_session = $stripe->checkout->sessions->create([
+    'customer_email' => $card->getEmail(),
+    // $card->getEmail(),
+    'line_items' => [[
+        'price_data' => [
+        'currency' => 'eur',
+        'product_data' => [
+            'name' => 'Carte cadeau d\'une valeur de :',
+        ],
+        'unit_amount' => $card->getAmount()."00",
+        // $card->getAmount(),
+        ],
+        'quantity' => 1,
+    ]],
+    'mode' => 'payment',
+    'success_url' => 'http://localhost:8000/success',
+    'cancel_url' => 'http://localhost:8000/cancel',
+    ]);
+
+        return $this->redirect($checkout_session->url);
+    }
+
 
     /**
      * @Route("/admin/card/{id}", name="app_card_show", methods={"GET"})

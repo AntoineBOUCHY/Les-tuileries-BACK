@@ -76,6 +76,11 @@ class Card
      */
     private $tel;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $paiement;
+
     public function __construct()
     {
         $this->boughtAt = new DateTimeImmutable();
@@ -211,6 +216,18 @@ class Card
     public function setTel(?string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function isPaiement(): ?bool
+    {
+        return $this->paiement;
+    }
+
+    public function setPaiement(?bool $paiement): self
+    {
+        $this->paiement = $paiement;
 
         return $this;
     }
