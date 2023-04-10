@@ -134,8 +134,8 @@ $checkout_session = $stripe->checkout->sessions->create([
         'quantity' => 1,
     ]],
     'mode' => 'payment',
-    'success_url' => 'http://localhost:8000/success',
-    'cancel_url' => 'http://localhost:8000/cancel',
+    'success_url' => 'http://localhost:8000/confirmation',
+    'cancel_url' => 'http://localhost:8000/annulation',
     ]);
 
         return $this->redirect($checkout_session->url);

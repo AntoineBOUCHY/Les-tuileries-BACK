@@ -16,7 +16,7 @@ class ReactController extends AbstractController
     }
 
     /**
-     * @Route("/{reactRouting}", name="app_react", priority="-1", defaults={"reactRouting": null}, requirements={"reactRouting"=".+"})
+     * @Route("/lala/{reactRouting}", name="app_react", priority="-1", defaults={"reactRouting": null}, requirements={"reactRouting"=".+"})
      */
     public function index()
     {

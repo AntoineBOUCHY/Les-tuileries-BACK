@@ -7,10 +7,13 @@ use App\Repository\NewsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\SurpriseCard;
 
 class FrontController extends AbstractController
 {
-    #[Route('/', name: 'app_front')]
+    /**
+     * @Route("/", name="app_front")
+     */    
     public function index(): Response
     {
         return $this->render('front/index.html.twig', [
@@ -18,15 +21,20 @@ class FrontController extends AbstractController
         ]);
     }
 
-    #[Route('/menus', name: 'app_menus')]
-public function menus(): Response
+    /**
+     * @Route("/menus", name="app_menus")
+     */
+    public function menus(): Response
     {
         return $this->render('front/menus.html.twig', [
             'controller_name' => 'FrontController',
         ]);
     }
-    #[Route('/galerie', name: 'app_galerie')]
-public function galerie(AllContents $allContents): Response
+
+    /**
+     * @Route("/galerie", name="app_galerie")
+     */
+    public function galerie(AllContents $allContents): Response
     {
         $currentPageAndLanguage = $allContents->getCurrentPageAndLanguageId("fr", "galerie");
 
@@ -38,27 +46,44 @@ public function galerie(AllContents $allContents): Response
             'allPictures' => $allPictures,
         ]);
     }
-    #[Route('/evenements', name: 'app_event')]
+
+    /**
+     * @Route("/evenements", name="app_event")
+     */
     public function event(NewsRepository $newsRepository): Response
     {
         return $this->render('front/event.html.twig', [
-            'allNews' => $newsRepository->getAllNewsOrderByPublishedAt()]);
-}
-#[Route('/carte_cadeau', name: 'app_cadeau')]
-public function cadeau(): Response
-{
-    return $this->render('front/cadeau.html.twig', [
-        'controller_name' => 'FrontController',
-    ]);
-}
+            'allNews' => $newsRepository->getAllNewsOrderByPublishedAt()
+        ]);
+    }
 
- #[Route('/success', name: 'app_success')]
- public function infos(): Response
- {
-     return $this->render('front/success.html.twig', [
-        'controller_name' => 'FrontController',
-     ]);
- }
+    /**
+     * @Route("/carte_cadeau", name="app_cadeau")
+     */
+    public function cadeau(): Response
+    {
+        return $this->render('front/cadeau.html.twig', [
+            'controller_name' => 'FrontController',
+        ]);
+    }
 
+    /**
+     * @Route("/confirmation", name="app_success")
+     */
+    public function success(): Response
+    {
+        return $this->render('front/success.html.twig', [
+            'controller_name' => 'FrontController',
+        ]);
+    }
+
+    /**
+     * @Route("/annulation", name="app_cancel")
+     */
+    public function canceled(): Response
+    {
+        return $this->render('front/canceled.html.twig', [
+            'controller_name' => 'FrontController',
+        ]);
+    }
 }
-
