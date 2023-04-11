@@ -18,7 +18,7 @@ class CardType extends AbstractType
             
         ->add('email', TextType::class, [
                 
-            'label' => 'Votre adresse mail ( Vous recevrez la carte cadeau en pdf ):',
+            'label' => 'Votre adresse mail :',
             'attr' => [
                 'class' => 'custom-title',
             ],

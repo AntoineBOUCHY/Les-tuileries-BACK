@@ -121,8 +121,12 @@ class CardController extends AbstractController
     {
 
         $cardId = $this->get('session')->get('card_id');
-    $card = $cardRepository->find($cardId);
-    $refcard = $card->getReference();
+        if (empty($cardId)) {
+            return $this->redirectToRoute('app_cadeau');
+        }
+        $card = $cardRepository->find($cardId);
+        
+    
         $stripe = new \Stripe\StripeClient('sk_test_51MWFV9HkQdmkPkOMQyZn0u7sVgCaah4JT8PZ6IZXVMLcm9qe0pbIIhageWXxMOgvuxyVSO0aSjkmXhIquMPtzous00s5OmZOnk');
         
 $checkout_session = $stripe->checkout->sessions->create([
@@ -145,19 +149,27 @@ $checkout_session = $stripe->checkout->sessions->create([
     ]);
     $this->get('session')->set('card_id', $card->getId());
     
+
+    
         return $this->redirect($checkout_session->url);
         
     }
-
+    
      /**
      * @Route("/confirmation", name="app_success")
      */
     public function success(CardRepository $cardRepository, SurpriseCard $surpriseCard): Response
     {
         $cardId = $this->get('session')->get('card_id');
+        dd($cardId);
+        
+        if (empty($cardId)) {
+            return $this->redirectToRoute('app_cadeau');
+        }
         
         $card = $cardRepository->find($cardId);
         // dd($card->getEmail());
+        
         $pathPDF = $surpriseCard->createCard($card->getReference(), $card->getGifter(), $card->getReceiver(), $card->getAmount(), $card->getLimitedDate()->format('d/m/Y'));
 
         
