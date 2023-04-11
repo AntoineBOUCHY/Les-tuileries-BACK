@@ -21,3 +21,4 @@
 public/assets/pdf
 public/assets/images
 public/assets/videos
+config/packages/web_profiler.yaml
