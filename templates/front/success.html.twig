@@ -42,26 +42,39 @@
     
     <!-- ***** Projects Area Starts ***** -->
     <section class="section" id="projects">
-    <div class="container">
+      <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="section-heading">
-                    <h6>Merci pour votre achat</h6>
+                    <h6>Confimation d'achat</h6>
                     <h2></h2>
                 </div>
                 <div class="filters">
-                <p>Voici votre carte cadeau</p> <br><br>
-
-                
+                <p>Merci pour votre achat !</p> <br>
+                <p>Votre bon cadeau personalisé vous a été envoyé à l'adresse : <strong>{{ card.email }}</strong> </p><br><br>
+                <p>Vous pouvez également le télécharger directement ici :</p><br>
+                <a target="_blank" href="{{ asset('assets/pdf/')}}{{ card.gifter }}-{{ card.receiver }}-{{ card.reference }}.pdf" style="margin-top:2rem; background-color:green!important;" class="main-button-icon">Télécharger<i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
-            
+            <div class="col-lg-9">
+                <div class="filters-content">
+                    
+                       
+                          <div>
+                            <img class="cardcadeau"src="{{ asset('assets/images/CarteGourmandeVerso.jpg') }}" alt="">                       </div>
+                        
+                        
+                        
+                        
+                    
+                </div>
         </div>
-        
-        <a href="{{ path('app_front') }}" style="margin-top:2rem;" class="main-button-icon">retour à l'accueil<i class="fa fa-arrow-right"></i></a>
-        
-    </div>
-    
+            </div>
+            <a href="{{ path('app_front') }}" style="margin-top:2rem;" class="main-button-icon">retour à l'accueil<i class="fa fa-arrow-right"></i></a>
+      <p style="margin-top:3rem;">Réservation au préalable recommandé, selon disponibilités. La valeur du bon ne peut en aucun cas être échangée contre de l'espèce. Dans le cas où le montant de la prestation dépasse celui du bon, il devra être complété par un autre moyen de paiement. Cependant, si le montant de la prestation est inférieur à celui du montant sur le bon, l'établissement ne rembourse pas la différence. Aucun bon ne sera accepté au-delà de sa date de <strong>validité (1 an)</strong>. Sous réserve de disponibilité.</p></div>
+      
     </section>
+        </div>
+    
    
     {% include 'front/footer.html.twig' %}

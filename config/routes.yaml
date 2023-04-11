@@ -8,3 +8,9 @@
 
 app_logout_admin:
     path: /admin/logout
+
+not_found:
+    path: '{any}'
+    controller: App\Controller\BackOffice\CardController::error404Action
+    requirements:
+        any: .+

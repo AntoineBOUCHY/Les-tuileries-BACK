@@ -6,6 +6,7 @@ use App\Entity\Card;
 use App\Entity\User;
 use App\Form\CardType;
 use DateTimeImmutable;
+use App\Service\SurpriseCard;
 use App\Repository\CardRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CardController extends AbstractController
 {
+    public function error404Action(): Response
+    {
+        return $this->render('TwigBundle/Exception/error404.html.twig', []);
+    }
     /**
      * @Route("/admin/cards", name="app_card_index", methods={"GET"})
      */
@@ -117,6 +122,7 @@ class CardController extends AbstractController
 
         $cardId = $this->get('session')->get('card_id');
     $card = $cardRepository->find($cardId);
+    $refcard = $card->getReference();
         $stripe = new \Stripe\StripeClient('sk_test_51MWFV9HkQdmkPkOMQyZn0u7sVgCaah4JT8PZ6IZXVMLcm9qe0pbIIhageWXxMOgvuxyVSO0aSjkmXhIquMPtzous00s5OmZOnk');
         
 $checkout_session = $stripe->checkout->sessions->create([
@@ -137,8 +143,39 @@ $checkout_session = $stripe->checkout->sessions->create([
     'success_url' => 'http://localhost:8000/confirmation',
     'cancel_url' => 'http://localhost:8000/annulation',
     ]);
-
+    $this->get('session')->set('card_id', $card->getId());
+    
         return $this->redirect($checkout_session->url);
+        
+    }
+
+     /**
+     * @Route("/confirmation", name="app_success")
+     */
+    public function success(CardRepository $cardRepository, SurpriseCard $surpriseCard): Response
+    {
+        $cardId = $this->get('session')->get('card_id');
+        
+        $card = $cardRepository->find($cardId);
+        // dd($card->getEmail());
+        $pathPDF = $surpriseCard->createCard($card->getReference(), $card->getGifter(), $card->getReceiver(), $card->getAmount(), $card->getLimitedDate()->format('d/m/Y'));
+
+        
+
+    return $this->renderForm('front/success.html.twig', [
+        'card' => $card,
+        'pdf'=> $pathPDF,        
+    ]);
+    }
+
+    /**
+     * @Route("/annulation", name="app_cancel")
+     */
+    public function canceled(CardRepository $cardRepository): Response
+    {
+        return $this->render('front/canceled.html.twig', [
+            'controller_name' => 'FrontController',
+        ]);
     }
 
 

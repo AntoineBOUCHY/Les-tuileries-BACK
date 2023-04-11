@@ -24,7 +24,7 @@
         {% if card.usedAt is not empty %}
             <p>Utilisée le : {{ card.usedAt|date('d/m/Y') }} </p>
         {% endif %}        
-        <p>Référence : <strong>#23710{{ card.id }}</strong> </p> 
+        <p>Référence : <strong>#{{ card.reference }}</strong> </p> 
         {% if card.email != "brasserielestuilerie@gmail.com" %}
         <p>Carte envoyé à : <strong>{{ card.email }}</strong></p>
         {% endif %}

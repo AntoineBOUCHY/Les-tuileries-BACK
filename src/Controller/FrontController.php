@@ -67,23 +67,5 @@ class FrontController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/confirmation", name="app_success")
-     */
-    public function success(): Response
-    {
-        return $this->render('front/success.html.twig', [
-            'controller_name' => 'FrontController',
-        ]);
-    }
-
-    /**
-     * @Route("/annulation", name="app_cancel")
-     */
-    public function canceled(): Response
-    {
-        return $this->render('front/canceled.html.twig', [
-            'controller_name' => 'FrontController',
-        ]);
-    }
+   
 }
