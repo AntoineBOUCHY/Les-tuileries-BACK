@@ -62,7 +62,7 @@ class SendMail
      * @param [type] $amount The amount of the card
      * @return bool
      */
-    public function sendCardMail($email, $firstname, $lastname, $amount, $pathPDF): bool
+    public function sendCardMail($email, $gifter, $amount, $pathPDF): bool
     {
         $mail = (new TemplatedEmail())
         ->from('les-tuileries@admin.com')
@@ -71,8 +71,7 @@ class SendMail
         ->attachFromPath($pathPDF)
         ->htmlTemplate('mails/mail_card.html.twig')
         ->context([
-            'userFirstname' => $firstname,
-            'userLastname' => $lastname,
+            'gifter' => $gifter,
             'amount' => $amount
         ]);
 

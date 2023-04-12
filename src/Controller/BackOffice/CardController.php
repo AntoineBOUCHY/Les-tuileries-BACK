@@ -6,6 +6,7 @@ use App\Entity\Card;
 use App\Entity\User;
 use App\Form\CardType;
 use DateTimeImmutable;
+use App\Service\SendMail;
 use App\Service\SurpriseCard;
 use App\Repository\CardRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -117,7 +118,7 @@ class CardController extends AbstractController
     /**
      * @Route("/create-checkout-session", name="app_stripe")
      */
-    public function paiement(Request $request,CardRepository $cardRepository): Response
+    public function paiement(Request $request,CardRepository $cardRepository, SendMail $mail): Response
     {
 
         $cardId = $this->get('session')->get('card_id');
@@ -133,7 +134,7 @@ $checkout_session = $stripe->checkout->sessions->create([
     'customer_email' => $card->getEmail(),
     // $card->getEmail(),
     'line_items' => [[
-        'price_data' => [
+        'price_data' => [   
         'currency' => 'eur',
         'product_data' => [
             'name' => 'Carte cadeau d\'une valeur de :',
@@ -144,12 +145,14 @@ $checkout_session = $stripe->checkout->sessions->create([
         'quantity' => 1,
     ]],
     'mode' => 'payment',
-    'success_url' => 'http://localhost:8000/confirmation',
+    'success_url' => 'http://localhost:8000/confirmation/?session_id={CHECKOUT_SESSION_ID}',
     'cancel_url' => 'http://localhost:8000/annulation',
     ]);
-    $this->get('session')->set('card_id', $card->getId());
+            $this->get('session')->set('card_id', $card->getId());
+            $card->setPaiementId($checkout_session->id);
+            $cardRepository->add($card, true);
+    // dd($card);
     
-
     
         return $this->redirect($checkout_session->url);
         
@@ -158,19 +161,33 @@ $checkout_session = $stripe->checkout->sessions->create([
      /**
      * @Route("/confirmation", name="app_success")
      */
-    public function success(CardRepository $cardRepository, SurpriseCard $surpriseCard): Response
+    public function success(CardRepository $cardRepository, SurpriseCard $surpriseCard, SendMail $mail): Response
     {
-        $cardId = $this->get('session')->get('card_id');
-        dd($cardId);
         
+        $cardId = $this->get('session')->get('card_id');
+
+       
+        
+        $card = $cardRepository->find($cardId);
+        // dd($card->isPaiement());
         if (empty($cardId)) {
             return $this->redirectToRoute('app_cadeau');
         }
         
-        $card = $cardRepository->find($cardId);
-        // dd($card->getEmail());
+        
+        // dd();
         
         $pathPDF = $surpriseCard->createCard($card->getReference(), $card->getGifter(), $card->getReceiver(), $card->getAmount(), $card->getLimitedDate()->format('d/m/Y'));
+        // $isSendMail = $mail->sendCardMail($card->getEmail(), $card->getGifter(), $card->getAmount(), $pathPDF);
+        // // Check if an error occured while sending the mail
+        // if(false === $isSendMail){
+
+        //     return $this->json([
+        //                 'message' => 'Paiement réussi mais erreur lors de l\'envoie du mail.'
+        //         ],
+        //         Response::HTTP_BAD_REQUEST
+        //     );
+        // }
 
         
 

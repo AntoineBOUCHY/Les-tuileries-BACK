@@ -67,5 +67,14 @@ class FrontController extends AbstractController
         ]);
     }
 
+      /**
+     * @Route("/25467437853925", name="app_esteregg")
+     */
+    public function esteregg(): Response
+    {
+        return $this->render('front/egg.html.twig', [
+            'controller_name' => 'FrontController',
+        ]);
+    }
    
 }
